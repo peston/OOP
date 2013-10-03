@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include "Lab 1_2.h"
+#include "lab1_2.h"
 
 using namespace std;
 
