@@ -1,48 +1,34 @@
-/* Программа отслеживающая успеваемость студентов по пяти оценкам */
 #include <iostream>
-#include "lab1_2.h"
+#include <string.h>
+#include "Lab 1_2.h"
 
-int main()
+using namespace std;
+
+employee::employee(char *name, long employee_id, float salary) // Конструктор
 {
-    // Создание объекта класса Student
-    Students student;
+    strcpy(employee::name, name) ;
+    employee::employee_id = employee_id;
+        if (salary < 50000.0) employee::salary = salary;
+        else // Недопустимый оклад
+    employee::salary=0.0;
+}
 
-    std::string name;
-    std::string last_name;
+void employee::show_employee(void) // Функция вывода информации о работнике
+{
+    cout << "Служащий: " << name << endl;
+    cout << "Номер служащего: " << employee_id << endl;
+    cout << "Оклад: " << salary << endl;
+}
 
-    //Запрос данных о студенте
-    std::cout << "Name: ";
-    getline(std::cin, name);
-    std::cout << "Last name: ";
-    getline(std::cin, last_name);
+employee::~employee(void) //Деструктор
+{
+    cout << "Уничтожение объекта для " << name << endl;
+}
 
-    // Сохранение имени и фамилии в объект класса Students
-    student.set_name(name);
-    student.set_last_name(last_name);
+int main(void)
+{
+    employee worker("Old Bobby", 1212, 50020.0);
+    worker.show_employee();
 
-    // Оценки
-    int scores[5];
-    // Сумма всех оценок
-    int sum = 0;
-
-    // Ввод промежуточных оценок
-    for (int i = 0; i < 5; ++i) {
-        std::cout << "Score " << i+1 << ": ";
-        std::cin >> scores[i];
-        // суммирование
-        sum += scores[i];
-    }
-
-    // Сохраняем промежуточные оценки в объект класса Student
-    student.set_scores(scores);
-    // Считаем средний балл
-    float average_ball = sum / 5.0;
-    // Сохраняем средний балл в объект класса Students
-    student.set_average_ball(average_ball);
-    // Выводим данные по студенту
-    std::cout << "Average ball for " << student.get_name() << " "
-         << student.get_last_name() << " is "
-         << student.get_average_ball() << std::endl;
-
-    return 0;
+return 0;
 }
